@@ -8,7 +8,7 @@ An **orphan process** is a process that continues to run after its parent proces
 - Orphan processes can consume system resources until they are reaped by the `init` process.
 - They can be identified by the absence of a parent process ID (PPID) other than 1.
 
-**Example:**
+**Example Code:**
 ```c
 #include <unistd.h>
 #include <stdio.h>
@@ -29,7 +29,11 @@ int main() {
 }
 ```
 
-In this example, the child process becomes an orphan when the parent exits before the child has finished executing.
+**Output Example:**
+```
+Child process 12345 is running
+```
+(Note: The output of the orphan process might appear after a delay, indicating it has been adopted by the `init` process.)
 
 ### Zombie Processes
 
@@ -39,7 +43,7 @@ A **zombie process** is a process that has completed execution but still has an 
 - Zombie processes do not consume system resources like CPU or memory but occupy a slot in the process table.
 - They can lead to resource leaks if too many zombies accumulate, as they reduce the number of available process IDs.
 
-**Example:**
+**Example Code:**
 ```c
 #include <unistd.h>
 #include <stdio.h>
@@ -61,10 +65,14 @@ int main() {
 }
 ```
 
-In this example, the child process becomes a zombie after it exits because the parent process does not call `wait()` to read its exit status before exiting.
+**Output Example:**
+```
+Child process 12346 is running
+Parent process 12347 exiting
+```
+(Note: After the parent process exits, the child process will become a zombie. You can check for zombie processes using the `ps` command in the terminal, and it will show the child process with a status of `Z`.)
 
 ### Summary
 
 - **Orphan Process**: A child process that continues to run after its parent has terminated. It is adopted by the `init` process.
 - **Zombie Process**: A completed child process that still has an entry in the process table because its parent has not called `wait()`.
-
