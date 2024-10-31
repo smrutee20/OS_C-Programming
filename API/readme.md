@@ -114,3 +114,35 @@ Organizations leveraging APIs can foster better communication and cooperation am
 ###Reference:
 
   -https://www.ibm.com/topics/api
+
+
+---
+
+Let's break down the concepts of **API** and **system call** in simpler terms:
+
+### API (Application Programming Interface)
+- **Definition**: An API is like a set of rules or functions that allows your program to request services from another program or system. Think of it as a menu in a restaurant: you can choose what you want to order based on the options listed.
+- **Functionality**: When you use an API, you call a function that follows a specific structure, and the API takes care of the details behind the scenes. For example, if you want to display something on the screen, you might call a function like `print()`, and the API will handle the necessary steps to show that text.
+
+### System Call
+- **Definition**: A system call is a way for your program to directly communicate with the operating system (OS) to request a service, like reading a file or accessing hardware. You can think of it as sending a formal request to a government office for permission to do something.
+- **Mechanism**: When a program makes a system call, it often involves a software interrupt that signals the kernel (the core part of the OS) to perform a specific action. For example, when your program needs to write data to a file, it makes a system call that instructs the OS to handle that operation.
+
+### How They Work Together
+1. **Using APIs**: When you write code and use functions provided by an API, you are typically not interacting with the OS directly. Instead, you are using a higher-level function that abstracts away the complexity.
+   
+2. **Triggering System Calls**: Underneath that API function, there might be one or more system calls that the API uses to perform the actual work. For instance, when you call `printf()` in C to display text, it eventually makes a system call to the OS to output the text to the screen.
+
+### Clarifications on Confusion
+- The mention of the C library intercepting calls can be misleading. The C library provides standard functions like `printf()` and manages how these functions interact with system calls, but it doesn't "intercept" them in a way that alters their nature. Instead, it ensures that when you call a function, the right system call is made to perform the operation.
+
+### Summary
+- **API**: A set of predefined functions for your program to use, like a menu.
+- **System Call**: A direct request to the operating system for a service, like asking for permission.
+- They work together, with APIs simplifying interactions and system calls executing the actual work required by the OS.
+
+In simple terms, APIs make it easier to use complex functions without needing to know all the details, while system calls are the actual requests that happen behind the scenes when those functions are called.
+
+
+![image](https://github.com/user-attachments/assets/08f2f91d-676b-4012-9519-e991a38842fd)
+
