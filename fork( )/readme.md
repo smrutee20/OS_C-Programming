@@ -157,6 +157,6 @@ int main() {
 With this change, the parent process will wait for the child to complete, ensuring the child's parent ID remains the same.
 
 
-References
+####References
 For more information about the fork() process in C, you can refer to the following website: [CSL - Process Creation](https://www.csl.mtu.edu/cs4411.ck/www/NOTES/process/fork/create.html).
 
