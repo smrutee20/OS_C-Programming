@@ -112,3 +112,47 @@ Process complete
 
 Each output sequence may vary based on process scheduling but will include messages from both the parent and child processes.
 
+
+### Why parent ID is differrent?
+The difference in the parent ID in the child process output is due to the way the operating system handles process hierarchy and, specifically, process termination.
+
+Here's what happens in detail:
+
+1. **Parent Process Completion**: After `fork()` is called, both the parent and child processes run concurrently. In your example, the parent process may complete its execution and exit *before* the child process prints its parent ID. 
+
+2. **Process Re-parenting**: When a parent process terminates before its child, the child becomes an *orphan process*. Most operating systems, including Linux, reassign orphan processes to the `init` process (with a typical PID of 1) or a designated process supervisor. This ensures there is always a parent process for every child.
+
+3. **Different Parent ID**: By the time the child process executes `getppid()` to print its parent ID, the original parent process may have exited. As a result, `getppid()` returns the PID of the re-assigned parent, usually the `init` process (in this case, likely with PID `1277`).
+
+To prevent this, you could add a `wait()` call in the parent process, making it wait for the child to complete before it exits. Here’s how you can modify the code:
+
+```c
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h> // Include this for wait()
+#include <stdio.h>
+
+int main() {
+    pid_t q;
+    printf("before fork\n");
+    q = fork();
+
+    if (q < 0) {
+        perror("Fork failed");
+        return 1;
+    } else if (q == 0) {
+        printf("I am the child process with ID: %d\n", getpid());
+        printf("My parent's ID is: %d\n", getppid());
+    } else {
+        printf("I am the parent process with ID: %d\n", getpid());
+        printf("My child's ID is: %d\n", q);
+        wait(NULL);  // Wait for the child process to complete
+    }
+
+    printf("Process complete\n");
+    return 0;
+}
+```
+
+With this change, the parent process will wait for the child to complete, ensuring the child's parent ID remains the same.
+
