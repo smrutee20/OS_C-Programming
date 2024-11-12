@@ -114,3 +114,32 @@ When the parent process ends, the operating system automatically terminates all 
 2. **Process Termination**: Child processes can be terminated by the parent due to resource overuse, task irrelevance, or because the parent itself was terminated, triggering a cascading termination.
 
 These rules and conditions help the OS manage resources efficiently and maintain control over active processes.
+
+
+-------------------------------------------------------------
+
+
+**Interleaved** and **overlapped** processes are two different ways of handling multiple tasks at once in an operating system. Let’s look at them in simple terms with examples:
+
+### 1. **Interleaved Processes**
+   - In interleaved processing, the CPU handles one task at a time but switches between tasks so quickly that it seems like multiple tasks are running simultaneously.
+   - Each task gets a small “time slice” to run, then pauses while another task runs. The tasks take turns using the CPU.
+
+   **Example**: Imagine you’re reading a book (Task A) and writing a letter (Task B). You read a page, then put the book down, write a few lines in the letter, then go back to reading the next page. You’re switching between tasks, but only doing one at a time. This switching back and forth is interleaving.
+
+### 2. **Overlapped Processes**
+   - In overlapped processing, tasks can actually run at the same time, but they use different resources. For instance, one task might use the CPU while another waits for input/output (I/O) operations.
+   - This allows two tasks to make progress simultaneously without waiting for each other, making better use of available resources.
+
+   **Example**: Imagine cooking (Task A) and washing dishes (Task B) in the kitchen. You might put a pot on the stove to boil (Task A) and, while waiting, start washing dishes (Task B). Here, the boiling and washing overlap because they don’t need the same resource (your attention) at the same time.
+
+### Summary:
+- **Interleaved**: Tasks take turns on the CPU, switching quickly so that they seem to run at once but actually don’t overlap in execution.
+- **Overlapped**: Tasks run at the same time, using different resources like CPU and I/O so they can progress simultaneously. 
+
+In both cases, the system handles multiple tasks efficiently but in different ways.
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+
