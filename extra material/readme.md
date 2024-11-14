@@ -329,3 +329,33 @@ For example, if the boot order is set as:
    - Third: CD/DVD Drive
 
    The BIOS will first check if a USB drive is connected and bootable. If it doesn’t find a bootable USB, it will move to the hard drive. If neither is bootable, it will try the CD/DVD drive.
+
+
+----------------------------------------------------------------
+
+# Boot Process Overview
+
+The boot programming that enables a computer to start up is stored in **ROM (Read-Only Memory)** and the **BIOS (Basic Input/Output System)**. Here’s a breakdown of each component's role in the boot process:
+
+## ROM
+- **Function**: Stores the initial instructions required to boot the computer and initialize hardware.
+- **Role in Booting**: The ROM BIOS provides basic instructions on accessing the hard disk, locating the operating system, and loading it into RAM.
+
+## BIOS
+- **Pre-Installed Firmware**: The BIOS is a firmware chip on the computer’s motherboard.
+- **Hardware Initialization**: During boot, the BIOS initializes essential hardware components, such as the monitor and keyboard, and performs basic checks to ensure the system is functioning properly.
+
+---
+
+## Boot Process Steps
+
+1. **BIOS Execution**: The BIOS chip instructs the computer to locate a boot loader on the primary (lowest-numbered) hard disk.
+2. **Boot Loader Initialization**: The boot loader, once located, is loaded into memory and started.
+3. **Operating System Startup**: The boot loader initiates the operating system.
+4. **Loading Initial System Files**: The boot record loads the initial system files from the boot device (diskette or hard disk) into RAM.
+5. **OS Loading**: The remaining components of the operating system are loaded into RAM, completing the boot process.
+
+---
+
+This sequence enables the computer to initialize hardware, locate and load the operating system, and prepare the system for use.
+
