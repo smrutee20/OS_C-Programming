@@ -284,3 +284,6 @@ Apart from the operating system (OS) itself, the **kernel** can be interacted wi
 
 Each of these entities interacts with the kernel in different ways depending on their role in the system, whether it's managing hardware, extending functionality, providing system services, or ensuring system security and stability.
 
+-----------------------------------------------------------------
+
+# Booting sequence
